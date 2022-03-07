@@ -50,8 +50,7 @@ module "ssh_key_pair" {
 }
 
 module "github_webhooks" {
-  source               = "cloudposse/repository-webhooks/github"
-  version              = "0.12.0"
+  source               = "git::https://github.com/sonatype/terraform-github-repository-webhooks.git?ref=tags/0.12.2"
   enabled              = local.enabled && var.webhook_enabled ? true : false
   github_organization  = var.repo_owner
   github_repositories  = [var.repo_name]
@@ -65,7 +64,7 @@ module "github_webhooks" {
 }
 
 module "ecs_web_app" {
-  source = "git::https://github.com/sonatype/terraform-aws-ecs-web-app.git?ref=tags/0.67.2"
+  source = "git::https://github.com/sonatype/terraform-aws-ecs-web-app.git?ref=tags/0.67.3"
 
   region      = var.region
   vpc_id      = var.vpc_id
